@@ -1,4 +1,4 @@
-from Vector import Vector
+import numpy as np
 
 class Camera(object):
     def __init__(self, eye, directionOfView, up, center):
@@ -11,16 +11,23 @@ class Camera(object):
         self.u = self.calcU()
 
     def calcF(self):
-        vectorF = Vector.lengthDivision(self.center - self.eye, Vector.getLength(self.center - self.eye))
-        return vectorF
+        #numpy f = (c-e) / ||c-e||
+        return np.array(self.subDivisionLength(self.center, self.eye))
 
     def calcS(self):
-        vectorS = Vector.lengthDivision(Vector.crossproduct(self.f, self.up),
-                                        Vector.getLength(Vector.crossproduct(self.f, self.up)))
-        return vectorS
+        #numpy s = f x up / || f x up ||
+        return np.array(self.crossDivisionLength(self.f, self.up))
 
     def calcU(self):
-        vectorU = Vector.crossproduct(self.s, self.f)
-        return vectorU
+        #numpy
+        return np.cross(self.s, self.f)
 
+
+    def subDivisionLength(self, vectorA, vectorB):
+        #return res = (a-b) / ||a-b||
+        return (vectorA - vectorB) / np.sqrt((vectorA-vectorB).dot(vectorA-vectorB))
+
+    def crossDivisionLength(self, vectorA, vectorB):
+        #return res = a x b / || a x b ||
+        return np.cross(vectorA, vectorB) / np.sqrt((np.cross(vectorA, vectorB).dot(np.cross(vectorA, vectorB))))
 
