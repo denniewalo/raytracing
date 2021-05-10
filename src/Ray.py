@@ -8,3 +8,4 @@ class Ray(object):
 
     def pointAtParameter(self, t):
         return self.origin + self.direction.scale(t) #Vektorskalierung
+
