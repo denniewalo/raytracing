@@ -1,2 +1,5 @@
-# raytracing
-Raytracing example
+# Raytracing
+
+
+#Installation
+1. pip install numpy
