@@ -18,7 +18,7 @@ class RayCasting(object):
             for y in range(self.imageHeight):
                 ray = self.camera.calcRay(x, y, self.pixelHeight, self.pixelWidth, self.width, self.height) #Berechnet den Strahl, der durch den Pixel geht
                 maxdist = float('inf') #Max Reichweite angeben -> bei uns "inf" für infinity (größtmöglicher float-wert)
-                color = self.BACKGROUND_COLOR  #Wenn der Strahl kein Objekt schneided, so ist die Farbe an dieser Stelle, die Hintergrundfarbe (weil kein Objekt)
+                color = self.background_color  #Wenn der Strahl kein Objekt schneided, so ist die Farbe an dieser Stelle, die Hintergrundfarbe (weil kein Objekt)
                 for object in self.objectlist:
                     hitdist = object.intersectionParameter(ray)
                     if hitdist:
