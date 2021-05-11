@@ -1,4 +1,5 @@
 import numpy as np
+from Color import Color
 class RayCasting(object):
     def __init__(self, imageWidth, imageHeight, objectlist, background_color, image, camera):
         self.imageWidth = imageWidth
@@ -18,13 +19,13 @@ class RayCasting(object):
             for y in range(self.imageHeight):
                 ray = self.camera.calcRay(x, y, self.pixelHeight, self.pixelWidth, self.width, self.height) #Berechnet den Strahl, der durch den Pixel geht
                 maxdist = float('inf') #Max Reichweite angeben -> bei uns "inf" für infinity (größtmöglicher float-wert)
-                color = self.background_color  #Wenn der Strahl kein Objekt schneided, so ist die Farbe an dieser Stelle, die Hintergrundfarbe (weil kein Objekt)
-                for object in self.objectlist:
-                    hitdist = object.intersectionParameter(ray)
+                color = self.background_color.getColor()  #Wenn der Strahl kein Objekt schneided, so ist die Farbe an dieser Stelle, die Hintergrundfarbe (weil kein Objekt)
+                for ob in self.objectlist:
+                    hitdist = ob.intersectionParameter(ray)
                     if hitdist:
                         if hitdist < maxdist:
                             maxdist = hitdist
-                            color = object.colorAt(ray)
+                            color = ob.colorAt(ray)
                 self.image.putpixel((x, y), color)
 
 

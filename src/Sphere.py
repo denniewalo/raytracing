@@ -1,9 +1,10 @@
 import numpy as np
 import math as math
 class Sphere(object):
-    def __init__(self, center, radius):
+    def __init__(self, center, radius, color):
         self.center = center #punkt
         self.radius = radius #skalar
+        self.color = color
 
     def __repr__(self):
         return "Sphere(%s,%s" %(repr(self.center), self.radius)
@@ -23,3 +24,7 @@ class Sphere(object):
     def normalized(self, vecPC):
         vecLength = np.sqrt(vecPC.dot(vecPC))
         return np.array(vecPC/vecLength)
+
+    def colorAt(self, ray):
+        return self.color.getColor()
+

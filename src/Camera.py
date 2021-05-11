@@ -2,15 +2,17 @@ import numpy as np
 from Ray import Ray
 
 class Camera(object):
-    def __init__(self, eye, directionOfView, up, center, fov):
+    def __init__(self, eye, up, center, fov):
         self.eye = eye
-        self.directionOfView = directionOfView
         self.up = up
         self.center = center
         self.fov = fov
         self.f = self.calculateF()
+        print(self.f)
         self.s = self.calculateS()
+        print(self.s)
         self.u = self.calculateU()
+        print(self.u)
 
     def calculateF(self):
         #numpy f = (c-e) / ||c-e||
