@@ -1,27 +1,33 @@
 import numpy as np
+from Ray import Ray
 
 class Camera(object):
-    def __init__(self, eye, directionOfView, up, center):
+    def __init__(self, eye, directionOfView, up, center, fov):
         self.eye = eye
         self.directionOfView = directionOfView
         self.up = up
         self.center = center
-        self.f = self.calcF()
-        self.s = self.calcS()
-        self.u = self.calcU()
+        self.fov = fov
+        self.f = self.calculateF()
+        self.s = self.calculateS()
+        self.u = self.calculateU()
 
-    def calcF(self):
+    def calculateF(self):
         #numpy f = (c-e) / ||c-e||
         return np.array(self.subDivisionLength(self.center, self.eye))
 
-    def calcS(self):
+    def calculateS(self):
         #numpy s = f x up / || f x up ||
         return np.array(self.crossDivisionLength(self.f, self.up))
 
-    def calcU(self):
+    def calculateU(self):
         #numpy
         return np.cross(self.s, self.f)
 
+    def calcRay(self, x, y, pixelWidth, pixelHeight, width, height):
+        xcomp = self.s * (x * pixelWidth - width/2)
+        ycomp = self.u * (y * pixelHeight - height/2)
+        return Ray(self.eye, self.f + xcomp + ycomp)
 
     def subDivisionLength(self, vectorA, vectorB):
         #return res = (a-b) / ||a-b||

@@ -1,9 +1,15 @@
 import numpy as np
-from RayCasting import RayCasting
 
-x = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
+#Anwendung
+_HEIGHT = 600
+_WIDTH = 600
+_BACKGROUND_COLOR = None
 
+#Kamera
+_EYE = np.array([])
+_UP = np.array([])
+_CENTRE = np.array([])
+_FOV = 45
+_ASPECT_RATIO = _HEIGHT / _WIDTH
 
-
-if __name__ == "__main__":
-    rc = RayCasting()
+print(np.tan(_FOV/2))
