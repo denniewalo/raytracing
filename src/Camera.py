@@ -8,11 +8,8 @@ class Camera(object):
         self.center = center
         self.fov = fov
         self.f = self.calculateF()
-        print(self.f)
         self.s = self.calculateS()
-        print(self.s)
         self.u = self.calculateU()
-        print(self.u)
 
     def calculateF(self):
         #numpy f = (c-e) / ||c-e||

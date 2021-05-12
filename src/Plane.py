@@ -10,8 +10,8 @@ class Plane(object):
 
     def intersectionParameter(self, ray):
         op = ray.origin - self.point
-        a = op.dot(self.normal)
-        b = ray.direction.dot(self.normal)
+        a = np.dot(self.normal, op)
+        b = np.dot(ray.direction, self.normal)
         if b:
             return -a/b
         else:
@@ -23,4 +23,5 @@ class Plane(object):
     def normalized(self, v):
         vecLength = np.sqrt(v.dot(v))
         return np.array(v/vecLength)
+
 

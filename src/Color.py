@@ -5,4 +5,16 @@ class Color(object):
         self.b = b
 
     def getColor(self):
-        return (self.r, self.g, self.b)
+        return (round(self.r), round(self.g), round(self.b))
+
+    def __add__(self, other):
+        return Color(self.r + other.r, self.g + other.g, self.b + other.b)
+
+    def __mul__(self, other):
+        return Color(self.r * other.r, self.g * other.g, self.b * other.b)
+
+    def divColor(self, value):
+        return Color(self.r / value, self.g / value, self.b / value)
+
+    def multiplayColor(self, value):
+        return Color(self.r * value, self.g * value, self.b * value)
